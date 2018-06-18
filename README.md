@@ -167,7 +167,7 @@ import React from 'react'
 import {compose} from 'redux'
 import {connect} from 'react-redux'
 import {onError} from 'c2-error'
-import UserTable from './UserTable'
+import SitesTable from './SitesTable'
 import selector from './selector'
 import {fetchSites} from '../actions'
 
@@ -176,5 +176,5 @@ const enhance = compose(
   connect(selector, {fetchSites})
 )
 
-export default enhance(UserTable)
+export default enhance(SitesTable)
 ```
