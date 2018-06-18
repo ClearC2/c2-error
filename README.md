@@ -12,7 +12,7 @@ Configure the package by:
 - setting the debug mode
 - returning any app related information at the time of error
 - supplying how errors should be reported(if at all)
-- add the ajax error interceptor as well.
+- add the ajax error interceptor
 
 ```js
 // src/c2-error-config.js
