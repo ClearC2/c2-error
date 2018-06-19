@@ -173,7 +173,6 @@ import SitesTable from './SitesTable'
 import selector from './selector'
 import {fetchSites} from '../actions'
 
-
 const enhance = compose(
   onError({placeholder: <BrokenIcon />, message: 'Sites table error'}),
   connect(selector, {fetchSites})
@@ -181,6 +180,6 @@ const enhance = compose(
 
 export default enhance(SitesTable)
 
-// the above is identical to this:
+// the above is the same as this:
 export default onError({placeholder: <BrokenIcon />, message: 'Sites table error'})(connect(selector, {fetchSites})(UserTable))
 ```
