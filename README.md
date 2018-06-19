@@ -87,9 +87,10 @@ Must return a `Promise`. This function gets an object with the following keys: `
 
 ### `reportComponentError: func`
 Must return a `Promise`. This function gets an object with the following keys: `message`, `closeToast`, `info`, `error`,
-`errorInfo`.
+`errorInfo`, `componentProps`.
 `error` and `errorInfo` are what the error boundary catches.
-[Read about these objects here](https://reactjs.org/docs/error-boundaries.html#componentdidcatch-parameters).
+[Read about these objects here](https://reactjs.org/docs/error-boundaries.html#componentdidcatch-parameters). `componentProps`
+are the props that the underlying component received.
 
 ## Usage
 

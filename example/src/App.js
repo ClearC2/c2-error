@@ -35,15 +35,15 @@ setConfig({
 addErrorInterceptor(axios)
 
 axios.get('/foobadglkjsgljgdg', {
-  onError: () => 'BORKED!',
-  onError: `Couldn't fetch blah blah!!!`,
-  onError: {
-    message: `Couldn't fetch blah blah`,
-    type: 'warn',
-    options: {
-      position: 'top-center'
-    }
-  }
+  // onError: () => 'BORKED!',
+  onError: `Couldn't fetch something!`,
+  // onError: {
+  //   message: `Couldn't fetch blah blah`,
+  //   type: 'warn',
+  //   options: {
+  //     position: 'top-center'
+  //   }
+  // }
 })
 
 export default function App () {
@@ -51,7 +51,7 @@ export default function App () {
     <div>
       <ToastContainer />
       <h1>C2 Error</h1>
-      <PackageComponent />
+      <PackageComponent foo={'bar'}/>
       <PackageSubcomponent />
     </div>
   )

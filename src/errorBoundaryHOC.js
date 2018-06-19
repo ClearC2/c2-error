@@ -13,7 +13,7 @@ const errorBoundaryHOC = (options = {}) => (WrappedComponent) => {
     componentDidCatch (error, info) {
       this.setState({error: true})
       if (typeof options.onCatch === 'function') {
-        options.onCatch(error, info)
+        options.onCatch(error, info, this.props)
       }
     }
     render () {

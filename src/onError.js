@@ -6,7 +6,7 @@ import {getConfig} from './config'
 
 export default ({placeholder = 'Error', message, type = 'error', options}) => errorBoundaryHOC({
   placeholder,
-  onCatch: (error, errorInfo) => {
+  onCatch: (error, errorInfo, props) => {
     if (!message) return
     const toastOptions = {...getConfig().toastOptions, ...options}
     toast[type]((
@@ -14,6 +14,7 @@ export default ({placeholder = 'Error', message, type = 'error', options}) => er
         message={message}
         error={error}
         errorInfo={errorInfo}
+        componentProps={props}
       />
     ), toastOptions)
   }
