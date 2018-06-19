@@ -160,7 +160,8 @@ axios.get('/sites/123/tickets', {
 ```
 
 ## Tips
-Higher-order components can become awkward if several are used. Redux comes with a `compose` function that cleans this up.
+Higher-order components can become awkward if several are used on the same component. Redux comes with a `compose`
+function that makes this less awkward.
 
 
 ```jsx
@@ -172,10 +173,14 @@ import SitesTable from './SitesTable'
 import selector from './selector'
 import {fetchSites} from '../actions'
 
+
 const enhance = compose(
   onError({placeholder: <BrokenIcon />, message: 'Sites table error'}),
   connect(selector, {fetchSites})
 )
 
 export default enhance(SitesTable)
+
+// the above is identical to this:
+export default onError({placeholder: <BrokenIcon />, message: 'Sites table error'})(connect(selector, {fetchSites})(UserTable))
 ```
