@@ -13,8 +13,6 @@ export default class ComponentToast extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      reporting: false,
-      reported: false,
       info: getConfig().getInfo()
     }
   }
