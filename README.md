@@ -24,6 +24,7 @@ setConfig({
   getInfo: () => {
     return {
       url: window.location.href,
+      date: new Date(),
       loginId: store.getIn(['Users', 'currentLoginId']),
       env: global.NODE_ENV
     }
@@ -74,10 +75,10 @@ Determines whether or not to display debug information in the toast. Defaults to
 
 ### `getInfo: func`
 This should return any arbitrary information collected at the time the error occurs. Defaults to function that returns
-`{url: window.location.href}`.
+`{url: window.location.href, date: new Date()}`.
 
 ### `toastOptions: object`
-Default toast options. Defaults to `{autoClose: false, closeOnClick: false}`.
+Default [toast options](https://github.com/fkhadra/react-toastify#toast). Defaults to `{autoClose: false, closeOnClick: false}`.
 
 ### `reportAjaxError: func`
 Must return a `Promise`. This function gets an object with the following keys: `message`, `closeToast`, `info`, `error`.

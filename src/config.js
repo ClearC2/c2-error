@@ -8,7 +8,8 @@ let config = {
   reportComponentError: null,
   getInfo: () => {
     return {
-      url: window.location.href
+      url: window.location.href,
+      date: new Date()
     }
   }
 }
