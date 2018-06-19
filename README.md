@@ -18,6 +18,7 @@ Configure the package by:
 // src/c2-error-config.js
 import {addErrorInterceptor, setConfig} from 'c2-error'
 import ajax from '../ajax'
+import store from '../store'
 
 setConfig({
   debug: ['staging', 'development'].includes(global.NODE_ENV),
@@ -25,7 +26,7 @@ setConfig({
     return {
       url: window.location.href,
       date: new Date(),
-      loginId: store.getIn(['Users', 'currentLoginId']),
+      loginId: store.getState().getIn(['Users', 'currentLoginId']),
       env: global.NODE_ENV
     }
   },
