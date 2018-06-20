@@ -8,4 +8,7 @@ function PackageComponent () {
   )
 }
 
-export default onError({placeholder: 'Error :(', message: 'Package Component Error'})(PackageComponent)
+export default onError({
+  placeholder: 'Error :(',
+  message: (props) => `PackageComponent Error. Foo: ${props.foo}`
+})(PackageComponent)

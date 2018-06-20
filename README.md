@@ -121,6 +121,12 @@ export default onError({
   options: {autoClose: true}
 })(UserTable)
 
+// or customize the message
+export default onError({
+  placeholder: 'Error :(',
+  message: (props, error, errorInfo) => `User table error. User: ${props.loginId}`
+})(UserTable)
+
 ```
 
 The `onError` wraps the component in an [error boundary](https://reactjs.org/docs/error-boundaries.html). It does two

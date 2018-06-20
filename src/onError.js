@@ -1,21 +1,42 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {toast} from 'react-toastify'
-import errorBoundaryHOC from './errorBoundaryHOC'
 import ComponentToast from './ComponentToast'
 import {getConfig} from './config'
 
-export default ({placeholder = 'Error', message, type = 'error', options}) => errorBoundaryHOC({
-  placeholder,
-  onCatch: (error, errorInfo, props) => {
-    if (!message) return
-    const toastOptions = {...getConfig().toastOptions, ...options}
-    toast[type]((
-      <ComponentToast
-        message={message}
-        error={error}
-        errorInfo={errorInfo}
-        componentProps={props}
-      />
-    ), toastOptions)
+function getDisplayName (WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component'
+}
+
+export default ({placeholder, message, type = 'error', options}) => (WrappedComponent) => {
+  return class extends Component {
+    static displayName = `onError(${getDisplayName(WrappedComponent)})`
+    state = {
+      error: false
+    }
+    componentDidCatch (error, errorInfo) {
+      this.setState({error: true})
+      if (typeof message === 'function') {
+        message = message(this.props, error, errorInfo)
+      }
+      if (!message) return
+      if (typeof toast[type] !== 'function') {
+        type = 'error'
+      }
+      const toastOptions = {...getConfig().toastOptions, ...options}
+      toast[type]((
+        <ComponentToast
+          message={message}
+          error={error}
+          errorInfo={errorInfo}
+          componentProps={this.props}
+        />
+      ), toastOptions)
+    }
+    render () {
+      return this.state.error
+        ? (placeholder || <Fragment>Error</Fragment>)
+        : <WrappedComponent {...this.props} />
+    }
   }
-})
+}
+
