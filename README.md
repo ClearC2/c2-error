@@ -121,7 +121,7 @@ export default onError({
   options: {autoClose: true}
 })(UserTable)
 
-// or customize the message
+// or customize the message based on props or the error
 export default onError({
   placeholder: 'Error :(',
   message: (props, error, errorInfo) => `User table error. User: ${props.loginId}`
