@@ -4,7 +4,7 @@ import ComponentToast from './ComponentToast'
 import {getConfig} from './config'
 import getDisplayName from './getDisplayName'
 
-export default ({placeholder, message, type = 'error', options}) => (WrappedComponent) => {
+export default ({placeholder, message, type = 'error', options, componentName}) => (WrappedComponent) => {
   return class extends Component {
     static displayName = `onError(${getDisplayName(WrappedComponent)})`
     state = {
@@ -18,6 +18,9 @@ export default ({placeholder, message, type = 'error', options}) => (WrappedComp
       if (!message) return
       if (typeof toast[type] !== 'function') {
         type = 'error'
+      }
+      if (componentName) {
+        message = `${componentName}: ${message}`
       }
       const toastOptions = {...getConfig().toastOptions, ...options}
       toast[type]((
