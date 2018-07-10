@@ -2,10 +2,7 @@ import React, {Component} from 'react'
 import {toast} from 'react-toastify'
 import ComponentToast from './ComponentToast'
 import {getConfig} from './config'
-
-function getDisplayName (WrappedComponent) {
-  return WrappedComponent.displayName || WrappedComponent.name || 'Component'
-}
+import getDisplayName from './getDisplayName'
 
 export default ({placeholder, message, type = 'error', options}) => (WrappedComponent) => {
   return class extends Component {
