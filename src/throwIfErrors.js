@@ -4,17 +4,12 @@ import getDisplayName from './getDisplayName'
 export default  (WrappedComponent) => {
   return class extends Component {
     static displayName = `throwIfErrors(${getDisplayName(WrappedComponent)})`
-    componentDidMount () {
-      if (this.props.errors) {
-        throw this.props.errors
-      }
-    }
-    componentDidUpdate (prevProps) {
-      if (this.props.errors && this.props.errors !== prevProps.errors) {
-        throw this.props.errors
-      }
-    }
     render () {
+      if (this.props.errors) {
+        const error = new Error('Error')
+        error.errors = this.props.errors
+        throw error
+      }
       return <WrappedComponent {...this.props} />
     }
   }
