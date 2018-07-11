@@ -19,6 +19,9 @@ export default ({placeholder, message, type = 'error', options, componentName}) 
       if (typeof toast[type] !== 'function') {
         type = 'error'
       }
+      componentName = typeof componentName === 'function'
+        ? componentName(this.props)
+        : componentName
       if (componentName) {
         message = `${componentName}: ${message}`
       }
