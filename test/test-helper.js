@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import chai from 'chai'
 import dirtyChai from 'dirty-chai'
 import jsdom from 'jsdom'
+import 'raf/polyfill'
 
 const dom = new jsdom.JSDOM('<!doctype html><html><body></body></html>')
 
