@@ -16,14 +16,14 @@ export default class ComponentToast extends Component {
       info: getConfig().getInfo()
     }
   }
-  render() {
+  render () {
     const {message, error, errorInfo} = this.props
     const {reportComponentError} = getConfig()
     const stack = errorInfo.componentStack.split('\n').filter(line => !!line)
     const {info} = this.state
     return (
       <Fragment>
-        {message}<br/>
+        {message}<br />
         {reportComponentError && (
           <ReportButton
             {...this.props}

@@ -1,13 +1,10 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {toast} from 'react-toastify'
 import ComponentToast from './ComponentToast'
 import {getConfig} from './config'
+import getDisplayName from './getDisplayName'
 
-function getDisplayName (WrappedComponent) {
-  return WrappedComponent.displayName || WrappedComponent.name || 'Component'
-}
-
-export default ({placeholder, message, type = 'error', options}) => (WrappedComponent) => {
+export default ({placeholder, message, type = 'error', options, componentName}) => (WrappedComponent) => {
   return class extends Component {
     static displayName = `onError(${getDisplayName(WrappedComponent)})`
     state = {
@@ -21,6 +18,12 @@ export default ({placeholder, message, type = 'error', options}) => (WrappedComp
       if (!message) return
       if (typeof toast[type] !== 'function') {
         type = 'error'
+      }
+      componentName = typeof componentName === 'function'
+        ? componentName(this.props)
+        : componentName
+      if (componentName) {
+        message = `${componentName}: ${message}`
       }
       const toastOptions = {...getConfig().toastOptions, ...options}
       toast[type]((
@@ -39,4 +42,3 @@ export default ({placeholder, message, type = 'error', options}) => (WrappedComp
     }
   }
 }
-

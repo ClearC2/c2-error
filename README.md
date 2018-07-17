@@ -1,4 +1,4 @@
-# c2-error
+# c2-error [![CircleCI](https://circleci.com/gh/ClearC2/c2-error.svg?style=svg)](https://circleci.com/gh/ClearC2/c2-error)
 
 Provides a method to handle react component and ajax errors.
 
@@ -98,11 +98,11 @@ are the props that the underlying component received.
 
 ### Component Errors
 
-Use the `onError` higher-order component to provide a placeholder and toast message.
+Use the `onCatch` higher-order component to provide a placeholder and toast message.
 
 ```jsx
 import React from 'react'
-import {onError} from 'c2-error'
+import {onCatch} from 'c2-error'
 
 function UserTable () {
   undefined.test() // intentional error
@@ -111,10 +111,13 @@ function UserTable () {
   )
 }
 
-export default onError({placeholder: 'Error :(', message: 'User table error'})(UserTable)
+export default onCatch({
+  placeholder: 'Error :(',
+  message: 'User table error'
+})(UserTable)
 
 // or customize the toast
-export default onError({
+export default onCatch({
   placeholder: 'Error :(',
   message: 'User table error',
   type: 'warn',
@@ -122,18 +125,36 @@ export default onError({
 })(UserTable)
 
 // or customize the message based on props or the error
-export default onError({
+export default onCatch({
   placeholder: 'Error :(',
   message: (props, error, errorInfo) => `User table error. User: ${props.loginId}`
 })(UserTable)
 
 ```
 
-The `onError` wraps the component in an [error boundary](https://reactjs.org/docs/error-boundaries.html). It does two
+The `onCatch` wraps the component in an [error boundary](https://reactjs.org/docs/error-boundaries.html). It does two
 things.
 
 1. Displays the placeholder instead of the component if it errors(`UserTable` in the example above)
 2. Creates a toast
+
+Use the `ifErrorsProp` HOC to display a placeholder if the component receives an `errors` prop.
+
+```jsx
+import {onCatch, ifErrorsProp} from 'c2-error'
+
+const enhance = compose(
+  onCatch({placeholder: 'Error', message: 'User table error.'}),
+  connect(userTableSelector, {fetchUsers}),
+  ifErrorsProp({placeholder: 'Error'})
+)
+
+export default enhance(UserTable)
+```
+
+The `onCatch` HOC is meant to catch thrown javascript runtime errors using a React error boundary. The `ifErrorsProp` HOC displays a placeholder if errors are passed as a prop. For example, your component's redux selector can map in errors from a request(s).
+
+The `ifErrorsProp` HOC is not meant to be used if the component is expecting errors to be passed to it. For example, with a form, it is very likely that users will enter invalid data and the api will respond with validation errors. Rather than replacing the whole form with a placeholder, the form will most likely want to render those errors above the inputs to allow the user to correct their input.
 
 ### Ajax Errors
 `c2-error` uses [axios's `config` object](https://github.com/axios/axios#request-method-aliases) to display errors if
@@ -176,18 +197,19 @@ function that makes this less awkward.
 import React from 'react'
 import {compose} from 'redux'
 import {connect} from 'react-redux'
-import {onError} from 'c2-error'
+import {onCatch, ifErrorsProp} from 'c2-error'
 import SitesTable from './SitesTable'
 import selector from './selector'
 import {fetchSites} from '../actions'
 
 const enhance = compose(
-  onError({placeholder: <BrokenIcon />, message: 'Sites table error'}),
-  connect(selector, {fetchSites})
+  onCatch({placeholder: <BrokenIcon />, message: 'Sites table error'}),
+  connect(selector, {fetchSites}),
+  ifErrorsProp({placeholder: <BrokenIcon />})
 )
 
 export default enhance(SitesTable)
 
 // the above is the same as this:
-export default onError({placeholder: <BrokenIcon />, message: 'Sites table error'})(connect(selector, {fetchSites})(UserTable))
+export default onCatch({placeholder: <BrokenIcon />, message: 'Sites table error'})(connect(selector, {fetchSites})(ifErrorsProp({placeholder: <BrokenIcon />})(UserTable)))
 ```

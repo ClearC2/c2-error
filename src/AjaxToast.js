@@ -36,7 +36,7 @@ export default class AjaxToast extends Component {
     const {info} = this.state
     return (
       <Fragment>
-        {message}<br/>
+        {message}<br />
         {reportAjaxError && (
           <ReportButton
             {...this.props}
