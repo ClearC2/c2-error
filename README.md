@@ -1,4 +1,4 @@
-# c2-error
+# c2-error [![CircleCI](https://circleci.com/gh/ClearC2/c2-error.svg?style=svg)](https://circleci.com/gh/ClearC2/c2-error)
 
 Provides a method to handle react component and ajax errors.
 
