@@ -5,7 +5,7 @@ export default class DebugText extends PureComponent {
   static propTypes = {
     children: PropTypes.node
   }
-  render() {
+  render () {
     return (
       <div
         style={{

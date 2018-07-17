@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react'
 import PackageComponent from './PackageComponent'
 import PackageSubcomponent from './PackageSubcomponent'
@@ -12,7 +13,7 @@ setConfig({
     return new Promise(resolve => {
       setTimeout(() => {
         const {closeToast, ...rest} = props
-        alert('Reported!')
+        window.alert('Reported!')
         console.info(rest)
         resolve()
         closeToast()
@@ -23,7 +24,7 @@ setConfig({
     return new Promise(resolve => {
       setTimeout(() => {
         const {closeToast, ...rest} = props
-        alert('Reported!')
+        window.alert('Reported!')
         console.info(rest)
         resolve()
         closeToast()
@@ -36,7 +37,7 @@ addErrorInterceptor(axios)
 
 axios.get('/foobadglkjsgljgdg', {
   // onError: () => 'BORKED!',
-  onError: `Couldn't fetch something!`,
+  onError: `Couldn't fetch something!`
   // onError: {
   //   message: `Couldn't fetch blah blah`,
   //   type: 'warn',
@@ -51,7 +52,7 @@ export default function App () {
     <div>
       <ToastContainer />
       <h1>C2 Error</h1>
-      <PackageComponent foo={'bar'}/>
+      <PackageComponent foo={'bar'} />
       <PackageSubcomponent />
     </div>
   )

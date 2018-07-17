@@ -205,11 +205,11 @@ import {fetchSites} from '../actions'
 const enhance = compose(
   onCatch({placeholder: <BrokenIcon />, message: 'Sites table error'}),
   connect(selector, {fetchSites}),
-  ifErrorsProp({placeholder: '<BrokenIcon />})
+  ifErrorsProp({placeholder: <BrokenIcon />})
 )
 
 export default enhance(SitesTable)
 
 // the above is the same as this:
-export default onError({placeholder: <BrokenIcon />, message: 'Sites table error'})(connect(selector, {fetchSites})(ifErrorsProp({placeholder: '<BrokenIcon />})(UserTable)))
+export default onCatch({placeholder: <BrokenIcon />, message: 'Sites table error'})(connect(selector, {fetchSites})(ifErrorsProp({placeholder: <BrokenIcon />})(UserTable)))
 ```

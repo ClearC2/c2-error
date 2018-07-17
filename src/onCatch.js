@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {toast} from 'react-toastify'
 import ComponentToast from './ComponentToast'
 import {getConfig} from './config'
@@ -42,4 +42,3 @@ export default ({placeholder, message, type = 'error', options, componentName}) 
     }
   }
 }
-
