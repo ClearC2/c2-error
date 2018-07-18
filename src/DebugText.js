@@ -14,7 +14,8 @@ export default class DebugText extends PureComponent {
           backgroundColor: '#fff',
           color: '#000',
           padding: '1rem',
-          marginTop: '1rem'
+          marginTop: '1rem',
+          hyphens: 'auto'
         }}
       >
         {this.props.children}
