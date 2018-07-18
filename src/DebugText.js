@@ -15,6 +15,8 @@ export default class DebugText extends PureComponent {
           color: '#000',
           padding: '1rem',
           marginTop: '1rem',
+          wordWrap: 'break-word',
+          wordBreak: 'break-word',
           hyphens: 'auto'
         }}
       >
