@@ -36,6 +36,9 @@ export default ({placeholder, message, type = 'error', options, componentName}) 
       ), toastOptions)
     }
     render () {
+      placeholder = typeof placeholder === 'function'
+        ? placeholder(this.props)
+        : placeholder
       return this.state.error
         ? (placeholder || <Fragment>Error</Fragment>)
         : <WrappedComponent {...this.props} />
