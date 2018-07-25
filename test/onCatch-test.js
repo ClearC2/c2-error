@@ -41,6 +41,15 @@ describe('onCatch', () => {
     expect(container.innerHTML).to.include(placeholderText)
   })
 
+  it('should support placeholder function with component props', () => {
+    const foo = 'foo'
+    const placeholderFunc = ({foo}) => <div>{foo}</div>
+    const WrappedGreeting = onCatch({placeholder: placeholderFunc})(Greeting)
+    const {container} = render(<WrappedGreeting name={name} foo={foo} causeError />)
+    expect(container.innerHTML).to.not.include(name)
+    expect(container.innerHTML).to.include(foo)
+  })
+
   it('should toast on error', () => {
     const message = 'Oops!'
     const WrappedGreeting = onCatch({message})(Greeting)
