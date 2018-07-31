@@ -5,12 +5,23 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "cd example && webpack-dev-server --inline --content-base dist --history-api-fallback --port 8083 --mode development",
-    "build": "node_modules/.bin/babel -d lib/ src/",
+    "build": "babel -d lib/ src/",
     "build:watch": "node_modules/.bin/babel -w -d lib/ src/",
     "build:docs": "rm -rf docs/*.js  && rm -rf docs/*.css && cd example && NODE_ENV=production webpack --mode production",
-    "test": "node_modules/.bin/mocha --require babel-core/register ./test/null-compiler.js ./test/test-helper.js  \"test/**/*-test.@(js|jsx)\" -c",
+    "test": "mocha --require babel-core/register ./test/null-compiler.js ./test/test-helper.js  \"test/**/*-test.@(js|jsx)\" -c",
     "test:watch": "npm run test -- --watch",
-    "test:report": "nyc --reporter=html npm test"
+    "test:report": "nyc --reporter=html npm test",
+    "cm": "git-cz",
+    "semantic-release": "semantic-release"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "release": {
+    "branch": "master",
+    "extends": "c2-semantic-release"
   },
   "husky": {
     "hooks": {
@@ -47,6 +58,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "c2-semantic-release": "ClearC2/c2-semantic-release#^1.0.0",
     "chai": "^4.1.2",
     "clean-webpack-plugin": "^0.1.18",
     "css-loader": "^0.28.10",
