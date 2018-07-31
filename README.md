@@ -5,7 +5,7 @@ Provides a method to handle react component and ajax errors.
 ## Install
 
 ```
-yarn add ClearC2/c2-error
+yarn add ClearC2/c2-error#^1.0.0
 ```
 
 Configure the package by:
