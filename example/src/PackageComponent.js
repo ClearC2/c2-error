@@ -1,5 +1,5 @@
 import React from 'react'
-import {onError} from 'c2-error'
+import {onCatch} from 'c2-error'
 
 function PackageComponent () {
   undefined.test()
@@ -8,7 +8,7 @@ function PackageComponent () {
   )
 }
 
-export default onError({
+export default onCatch({
   placeholder: 'Error :(',
   message: (props) => `PackageComponent Error. Foo: ${props.foo}`
 })(PackageComponent)

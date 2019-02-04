@@ -35,7 +35,11 @@ setConfig({
 
 addErrorInterceptor(axios)
 
+const CancelToken = axios.CancelToken
+const source = CancelToken.source()
+
 axios.get('/foobadglkjsgljgdg', {
+  cancelToken: source.token,
   // onError: () => 'BORKED!',
   onError: `Couldn't fetch something!`
   // onError: {
@@ -46,6 +50,7 @@ axios.get('/foobadglkjsgljgdg', {
   //   }
   // }
 })
+source.cancel('foobar')
 
 export default function App () {
   return (
