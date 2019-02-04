@@ -4,6 +4,9 @@ import {getConfig} from './config'
 import AjaxToast from './AjaxToast'
 
 const errorInterceptor = error => {
+  // cancelled requests do not have config
+  if (!error.config) return Promise.reject(error)
+
   let toastConfig = typeof error.config.onError === 'function'
     ? error.config.onError(error)
     : error.config.onError
