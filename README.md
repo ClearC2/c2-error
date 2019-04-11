@@ -1,11 +1,15 @@
-# c2-error [![CircleCI](https://circleci.com/gh/ClearC2/c2-error.svg?style=svg)](https://circleci.com/gh/ClearC2/c2-error)
+# @clearc2/c2-error [![CircleCI](https://circleci.com/gh/ClearC2/c2-error.svg?style=svg)](https://circleci.com/gh/ClearC2/c2-error)
 
 Provides a method to handle react component and ajax errors.
 
 ## Install
 
 ```
-yarn add ClearC2/c2-error#^1.0.0
+# for yarn
+yarn add @clearc2/c2-error
+
+# for npm
+npm install @clearc2/c2-error
 ```
 
 Configure the package by:
@@ -16,7 +20,7 @@ Configure the package by:
 
 ```js
 // src/c2-error-config.js
-import {addErrorInterceptor, setConfig} from 'c2-error'
+import {addErrorInterceptor, setConfig} from '@clearc2/c2-error'
 import ajax from '../ajax'
 import store from '../store'
 
@@ -102,7 +106,7 @@ Use the `onCatch` higher-order component to provide a placeholder and toast mess
 
 ```jsx
 import React from 'react'
-import {onCatch} from 'c2-error'
+import {onCatch} from '@clearc2/c2-error'
 
 function UserTable () {
   undefined.test() // intentional error
@@ -141,7 +145,7 @@ things.
 Use the `ifErrorsProp` HOC to display a placeholder if the component receives an `errors` prop.
 
 ```jsx
-import {onCatch, ifErrorsProp} from 'c2-error'
+import {onCatch, ifErrorsProp} from '@clearc2/c2-error'
 
 const enhance = compose(
   onCatch({placeholder: 'Error', message: 'User table error.'}),
@@ -197,7 +201,7 @@ function that makes this less awkward.
 import React from 'react'
 import {compose} from 'redux'
 import {connect} from 'react-redux'
-import {onCatch, ifErrorsProp} from 'c2-error'
+import {onCatch, ifErrorsProp} from '@clearc2/c2-error'
 import SitesTable from './SitesTable'
 import selector from './selector'
 import {fetchSites} from '../actions'

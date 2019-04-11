@@ -29,7 +29,7 @@ let config = {
   },
   resolve: {
     alias: {
-      'c2-error': path.join(__dirname, '../src')
+      '@clearc2/c2-error': path.join(__dirname, '../src')
     }
   },
   module: {

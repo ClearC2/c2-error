@@ -1,8 +1,11 @@
 {
-  "name": "c2-error",
+  "name": "@clearc2/c2-error",
   "version": "1.0.1",
   "description": "react error handling",
   "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "cd example && webpack-dev-server --inline --content-base dist --history-api-fallback --port 8083 --mode development",
     "build": "babel -d lib/ src/",
@@ -21,7 +24,12 @@
   },
   "release": {
     "branch": "master",
-    "extends": "c2-semantic-release"
+    "extends": "c2-semantic-release",
+    "npmPublish": true,
+    "publish": [
+      "@semantic-release/github",
+      "@semantic-release/npm"
+    ]
   },
   "husky": {
     "hooks": {

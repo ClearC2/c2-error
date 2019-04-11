@@ -5,7 +5,7 @@ import PackageSubcomponent from './PackageSubcomponent'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios'
-import {addErrorInterceptor, setConfig} from 'c2-error'
+import {addErrorInterceptor, setConfig} from '@clearc2/c2-error'
 
 setConfig({
   debug: true,
