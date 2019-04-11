@@ -1,6 +1,6 @@
 {
   "name": "@clearc2/c2-error",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "react error handling",
   "main": "lib/index.js",
   "publishConfig": {
