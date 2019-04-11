@@ -1,5 +1,5 @@
 import React from 'react'
-import {onCatch} from 'c2-error'
+import {onCatch} from '@clearc2/c2-error'
 
 function PackageComponent () {
   undefined.test()
