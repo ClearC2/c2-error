@@ -11,7 +11,7 @@
     "build": "babel -d lib/ src/",
     "build:watch": "node_modules/.bin/babel -w -d lib/ src/",
     "build:docs": "rm -rf docs/*.js  && rm -rf docs/*.css && cd example && NODE_ENV=production webpack --mode production",
-    "test": "mocha --require babel-core/register ./test/null-compiler.js ./test/test-helper.js  \"test/**/*-test.@(js|jsx)\" -c",
+    "test": "mocha --require babel-core/register ./test/null-compiler.js ./test/test-helper.js  \"test/**/*-test.@(js|jsx)\" -c --exit",
     "test:watch": "npm run test -- --watch",
     "test:report": "nyc --reporter=html npm test",
     "cm": "git-cz",
